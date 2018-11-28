@@ -152,8 +152,7 @@ class User < ActiveRecord::Base
   end
 
   def dirty_ls_list
-    self.ls_list_state = "dirty"
-    save!
+    update_attribute(:ls_list_state, "dirty")
   end
 
   def has_dirty_ls_list?
@@ -161,8 +160,7 @@ class User < ActiveRecord::Base
   end
 
   def clean_ls_list
-    self.ls_list_state = "clean"
-    save!
+    update_attribute(:ls_list_state, "clean")
   end
 
   def has_clean_ls_list?
