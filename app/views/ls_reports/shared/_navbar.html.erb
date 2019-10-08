@@ -41,11 +41,7 @@
         </div>
         <% unless @hide_pk %>
           <div class="pull-right pad-right">
-<<<<<<< HEAD
-            <b><%= @role_aggregate.pk_label %></b> <font color="red"><i>(please select a student below)</i></font>
-=======
             <b><%= @role_aggregate.pk_label %></b> <font color="red"><i></i></font>
->>>>>>> ab6de12... Enable other question types to properly display graphical data
             <br/>
             <select id="pk_selector" name="pk_selector" class="select_a_link form-control input-sm">
               <% @pk_enum.each do |key, val|%>
