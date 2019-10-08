@@ -4,24 +4,32 @@
             <tr>
                 <th>Answer</th>
                 <th># Responses</th>
-                <th># <%= @role_aggregate.get_pk_label.pluralize %></th>
+                <th>
+                <% if @role_aggregate.pk_label.present? %>
+                  # <%= @role_aggregate.get_pk_label.pluralize %>
+                <% end %>
+                </th>
                 <th>Responses (%)</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
         <% stats.categorical_stats.each do |cat_stat| %>
             <tr>
                <td><%= cat_stat.answer ? cat_stat.answer.to_s.html_safe : 'Missing' %></td>
-               <th class="centered-data"><%= cat_stat.frequency %>  </th>
-               <td class="centered-data"><%= cat_stat.pk_frequency %>  </td>
-               <th class="centered-data"><%= cat_stat.percent.round(2) %>  </th>
+               <td class="centered-data"><%= cat_stat.frequency %></td>
+               <td class="centered-data">
+                 <% if @role_aggregate.pk_label.present? %>
+                   <%= cat_stat.pk_frequency %>
+                <% end %>
+               </td>
+               <td class="centered-data"><%= cat_stat.percent.round(2) %></td>
+
             </tr>
         <% end %>
         <tr class="totals-row">
             <td><b>Total Response:</b></td>
             <td class="centered-data"><%= stats.response_count %></td>
-            <td></td>
-            <td></td>
             <td></td>
             <td></td>
         </tr>
