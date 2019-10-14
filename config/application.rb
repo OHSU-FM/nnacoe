@@ -30,6 +30,13 @@ module EdnaConsole
     config.autoload_paths += Dir["#{Rails.root.to_s}/app/controllers/**/*.rb"]
     config.autoload_paths += Dir["#{Rails.root.to_s}/lib/"]
 
+    config.before_configuration do
+      env_file = File.join(Rails.root, 'config', 'local_env.yml')
+      YAML.load(File.open(env_file)).each do |key, value|
+        ENV[key.to_s] = value
+      end if File.exists?(env_file)
+    end
+
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
     # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
