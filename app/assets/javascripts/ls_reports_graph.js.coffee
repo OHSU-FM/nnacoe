@@ -217,7 +217,7 @@ class LsGraphBase
         if unfiltered_series_name
             @unfiltered_series_name =  unfiltered_series_name  # unfiltered data series name
         else
-            @unfiltered_series_name = 'All Regions'
+            @unfiltered_series_name = 'All Responses'
 
         @title = if title? then title else ''
 
