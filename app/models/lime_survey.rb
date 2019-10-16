@@ -9,6 +9,7 @@ class LimeSurvey < ActiveRecord::Base
 
   self.inheritance_column = nil
   self.primary_key = :sid
+  has_one :survey_label, foreign_key: :lime_survey_sid, inverse_of: :lime_survey
   has_many :permission_ls_groups,
     foreign_key: :lime_survey_sid,
     inverse_of: :lime_survey
