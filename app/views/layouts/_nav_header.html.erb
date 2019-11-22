@@ -1,4 +1,4 @@
-<div id="nav-bar" class="navbar navbar-default <%= navbar_css_class %> navbar-fixed-top" role="navigation">
+<div id="nav-bar" class="navbar navbar-default <%= navbar_css_class %>" role="navigation">
 
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -64,6 +64,31 @@
     </div>
   </div>
 </div>
+<nav class="topbar-nav navbar-static-top">
+  <ul class="metismenu" id="menu1">
+    <% SurveyLabel.all.group_by(&:program).each do |program, program_labels| %>
+      <li id="removable">
+        <a class="has-arrow" href="#" aria-expanded="false">
+          <%=  SurveyLabel.human_attribute_name("program.#{program}") %>
+        </a>
+        <ul class="mm-collapse">
+          <% program_labels.group_by(&:label).each do |label, label_labels| %>
+            <li>
+              <a class="has-arrow" href="#" aria-expanded="false"><%= label %></a>
+              <ul class="mm-collapse">
+                <% label_labels.each do |survey_label| %>
+                  <li>
+                      <%= link_to(survey_label.title, "#{ls_report_path(survey_label.lime_survey_sid)}/#{survey_label.role_aggregate.default_view}", {style: "text-decoration:none;"}) %>
+                  </li>
+                <% end %>
+              </ul>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+    <% end %>
+  </ul>
+</nav>
 
 <%= render partial: 'shared/modal_spinner', locals: { modal_id: 'modal_nav_reports', message: 'Loading Report' }%>
 <%= render partial: 'shared/modal_spinner', locals: { modal_id: 'modal_nav_stats', message: 'Loading Data Set' }%>

@@ -3,6 +3,9 @@ class RoleAggregate < ActiveRecord::Base
 
   belongs_to :lime_survey, primary_key: :sid, foreign_key: :lime_survey_sid,
     inverse_of: :role_aggregate
+  has_one :survey_label,
+    through: :lime_survey,
+    foreign_key: :lime_survey_sid
   has_many :question_widgets
 
   validates_presence_of :default_view, :lime_survey_sid, :lime_survey
@@ -21,8 +24,6 @@ class RoleAggregate < ActiveRecord::Base
     navigation_label 'Lime Survey'
     list do
       field :lime_survey
-      field :created_at
-      field :updated_at
     end
     edit do
 

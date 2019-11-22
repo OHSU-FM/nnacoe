@@ -2,19 +2,10 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
   activerecord:
-      models:
-          assignment/assignment_comment: comment
-          assignment/user_assignment: competency
-      errors:
-          models:
-              survey_assignment:
-                  attributes:
-                      gather_user_tokens:
-                          not_implemented: 'is not yet implemented'
-  admin:
-    actions:
-        refresh:
-            menu: 'Refresh'
-
+    attributes:
+      survey_label/program:
+        health_seminar: Native Health Seminar Series
+        wyeast: Wy’EastPost Baccalaureate Program
+        indigenous_faculty: Indigenous Faculty Forum
+        applicant_workshop: Medical School Applicant Workshop

@@ -46,3 +46,5 @@
 //= require select2
 //= require nested_form_fields
 //= require cable
+//= require mm-horizontal
+//= require metismenujs
