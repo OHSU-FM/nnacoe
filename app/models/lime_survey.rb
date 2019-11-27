@@ -110,14 +110,15 @@ class LimeSurvey < ActiveRecord::Base
     return @last_updated
   end
 
-  def realted_surveys
+  def related_surveys
     survey_label = self.survey_label
     LimeSurvey.where(sid: SurveyLabel.where(
                                             program: survey_label.program,
                                             label: survey_label.label
                                             )
+                                     .where.not(lime_survey_sid: self.sid)
                                      .pluck(:lime_survey_sid)
-                                     .delete(self.sid)
+
                      )
   end
 

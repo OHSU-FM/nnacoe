@@ -4,8 +4,10 @@
 <div id="ls_reports_nav">
   <div id="container"></div>
   <ul class="list-inline">
-    <% related_surveys = @lime_survey.realted_surveys %>
-    <% unless related_surveys.empty? %>
+    <% related_surveys = @lime_survey.related_surveys %>
+    <% if related_surveys.empty? %>
+      <li><h3><%= @lime_survey.title %></h3></li>
+    <% else %>
       <li>
       <ul class="breadcrumb">
         <li>Related Reports</li>
