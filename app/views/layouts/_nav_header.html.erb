@@ -78,7 +78,7 @@
               <ul class="mm-collapse">
                 <% label_labels.each do |survey_label| %>
                   <li>
-                      <%= link_to(survey_label.title, "#{ls_report_path(survey_label.lime_survey_sid)}/#{survey_label.role_aggregate.default_view}", {style: "text-decoration:none;"}) %>
+                      <%= link_to(survey_label.title, "#{ls_report_path(survey_label.lime_survey_sid)}/graph", {style: "text-decoration:none;"}) %>
                   </li>
                 <% end %>
               </ul>

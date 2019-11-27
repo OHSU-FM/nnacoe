@@ -118,6 +118,17 @@ class LimeSurvey < ActiveRecord::Base
     return @last_updated
   end
 
+  def realted_surveys
+    survey_label = self.survey_label
+    LimeSurvey.where(sid: SurveyLabel.where(
+                                            program: survey_label.program,
+                                            label: survey_label.label
+                                            )
+                                     .pluck(:lime_survey_sid)
+                                     .delete(self.sid)
+                     )
+  end
+
   # Column Names Enumerator
   # TODO: This is broken, it does not return appropriate column_name when
   #       column has a suffix

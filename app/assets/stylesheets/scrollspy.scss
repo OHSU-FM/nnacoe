@@ -54,6 +54,9 @@
         position:fixed;
         top: 67px;
     }
+    &.affix-top{
+        position:fixed;
+    }
     /* Remove default bootstrap line spacing between nav elements */
     .nav{margin-bottom:0px;}
 }

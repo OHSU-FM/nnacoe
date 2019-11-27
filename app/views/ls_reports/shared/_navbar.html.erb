@@ -4,28 +4,26 @@
 <div id="ls_reports_nav">
   <div id="container"></div>
   <ul class="list-inline">
-    <li>
+    <% related_surveys = @lime_survey.realted_surveys %>
+    <% unless related_surveys.empty? %>
+      <li>
       <ul class="breadcrumb">
-        <li><%= link_to 'Reports', ls_reports_path %></li>
+        <li>Related Reports</li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
             <%= @lime_survey.title %> <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
-            <% hf_role_aggregate_groups(@user.role_aggregates).each do |group_name, role_aggregates| %>
-              <li><span><%= group_name.nil? ? 'Reports' : group_name %></span></li>
+            <% related_surveys.each do |survey| %>
               <li class="divider"></li>
-              <% role_aggregates.each do |title, ra| %>
                 <li>
-                  <%= link_to title,
-                    polymorphic_path([ra.default_view, :ls_report], sid: ra.lime_survey_sid, pk: (@pk.nil? ? "_" : @pk)),
-                    class: "modal-click", 'data-target' => '#modal-report' %>
+                  <%= link_to(survey.title, "#{ls_report_path(survey.sid)}/graph") %>
                 </li>
-              <% end %>
             <% end %>
           </ul>
         </li>
       </ul>
+    <% end %>
     </li>
     <li class="pull-right">
       <div id="header" class="hidden-print">
