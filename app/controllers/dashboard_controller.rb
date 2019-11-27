@@ -7,7 +7,8 @@ class DashboardController < ApplicationController
       return
     end
 
-    @surveys = current_user.lime_surveys_by_most_recent(5)
+    @surveys = LimeSurvey.lime_surveys_recently_added
+
     @dash = Dashboard.includes(:dashboard_widgets)
       .where(user_id: current_user.id).first_or_initialize
     authorize! :read, @dash

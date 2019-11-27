@@ -37,17 +37,9 @@ class LimeSurvey < ActiveRecord::Base
     navigation_label "Lime Survey"
     list do
       field :sid
-      field :admin
       field :title
       field :role_aggregate
-      field :lime_config_link do
-        pretty_value do
-          bindings[:view].link_to('',
-                                  bindings[:object].lime_config_link,
-                                  class: "fa fa-external-link",
-                                  target: "_blank")
-        end
-      end
+      field :survey_label
     end
   end
 
@@ -218,4 +210,9 @@ class LimeSurvey < ActiveRecord::Base
   def student_email_column
     lime_data.column_names.select{ |name| name.include? "StudentEmail" }.first
   end
+
+  def self.lime_surveys_recently_added
+    LimeSurvey.where(sid: SurveyLabel.order(:updated_at).limit(5).pluck(:lime_survey_sid))
+  end
+
 end
