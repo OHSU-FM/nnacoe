@@ -66,7 +66,7 @@
 </div>
 <nav class="topbar-nav navbar-static-top">
   <ul class="metismenu" id="menu1">
-    <% SurveyLabel.order(:program_position).order(:label_position).all.group_by(&:program).each do |program, program_labels| %>
+    <% SurveyLabel.order(:program, :program_position, :label_position).all.group_by(&:program).each do |program, program_labels| %>
       <li id="removable">
         <a class="has-arrow" href="#" aria-expanded="false">
           <%=  SurveyLabel.human_attribute_name("program.#{program}") %>

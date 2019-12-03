@@ -6,6 +6,6 @@ class LsReportsController < ApplicationController
   # show all roles
   def index
     authorize! :list, LimeSurvey
-    @survey_label_ordered = SurveyLabel.all.order(:label).group_by(&:program)
+    @survey_label_ordered = SurveyLabel.order(:program, :program_position, :label_position).all.group_by(&:program)
   end
 end
