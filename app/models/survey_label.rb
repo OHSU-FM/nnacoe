@@ -34,10 +34,14 @@ class SurveyLabel < ActiveRecord::Base
   rails_admin do
     navigation_label 'Lime Survey'
     list do
-      field :lime_survey
+      field :lime_survey do
+        column_width 500
+      end
       field :program
       field :year
       field :label
+      field :program_position
+      field :label_position
     end
   end
 end
