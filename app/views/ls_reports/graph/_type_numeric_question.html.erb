@@ -1,8 +1,4 @@
-
-
-<% if pquestion.hidden? %>
-    <p>hidden question</p>
-<% else %>
+<% unless pquestion.hidden? %>
       <div class="panel-heading panel-title"><%= strip_tags(pquestion.question) %></div>
       <ol id="qid<%= pquestion.qid %>" class="sub-question">
         <% pquestion.response_set.data.uniq.each do |ans| %>

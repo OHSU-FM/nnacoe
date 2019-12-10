@@ -438,10 +438,10 @@ window.LsReport.Graph.load = (target, graph_type, qstat, full_qstat, series_name
             chart = new LsGraphArrFlexChild(target, graph_type, qstat, full_qstat, series_name, unfiltered_series_name, filters_equal, title)
         when 'mult_numeric', 'list_comment', 'mult', 'mult_w_comments'
             chart = new LsGraphDescriptivesMultNumeric(target, graph_type, qstat, full_qstat, series_name, unfiltered_series_name, filters_equal, title)
-        when 'numeric'
+        # when 'numeric'
             # Only graph if the data is there
-            if !$.isEmptyObject(qstat.descriptive_stats)
-                chart = new LsGraphDescriptivesNumeric(target, graph_type, qstat, full_qstat, series_name, unfiltered_series_name, filters_equal, title)
+            # if !$.isEmptyObject(qstat.descriptive_stats)
+                # chart = new LsGraphDescriptivesNumeric(target, graph_type, qstat, full_qstat, series_name, unfiltered_series_name, filters_equal, title)
         when 'mult', 'yes_no', 'gender','list_drop', 'list_radio'
             chart = new LsGraphCategories(target, graph_type, qstat, full_qstat, series_name, unfiltered_series_name, filters_equal, title)
 
