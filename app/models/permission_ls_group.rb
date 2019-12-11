@@ -38,8 +38,22 @@ class PermissionLsGroup < ActiveRecord::Base
     enabled && enabled_allowed?
   end
 
+  def has_survey_label
+    lime_survey.present? && lime_survey.survey_label.present?
+  end
+
   rails_admin do
     visible true
+
+    list do
+      field :lime_survey do
+        column_width 550
+      end
+      field :permission_group
+      field :has_survey_label, :boolean do
+       read_only true
+      end
+    end
 
     edit do
       field :ready_for_use, :boolean do
