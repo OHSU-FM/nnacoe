@@ -25,7 +25,9 @@ module LimeExt::LimeStat
             :response_set,
             :headerA,
             :headerB,
-            :comments
+            :comments,
+            :mult_short_answers
+
 
 
 
@@ -37,6 +39,7 @@ module LimeExt::LimeStat
       unless @role_aggregate
         fail(:role_aggregate)
       end
+      @mult_short_answers = {}
       @sub_stats = []
       @categorical_stats = []
       @descriptive_stats = nil
@@ -316,7 +319,13 @@ module LimeExt::LimeStat
     # load_q handles q type question (multiple short text) from Lime_survey
     def load_mult_short_text(response_set, opts={})
       # Instantiate QuestionStat
-      return QuestionStat.new response_set, opts
+      qstat = QuestionStat.new response_set, opts
+      responses_questions = response_set.data
+      response_set.related_data.values.each_with_index do |responses, index|
+        question_title = responses_questions[index].question.question
+        qstat.mult_short_answers[question_title] = responses.delete_if(&:blank?)
+      end
+      return qstat
     end
 
     ##
