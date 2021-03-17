@@ -30,7 +30,8 @@ class Dashboard < ActiveRecord::Base
     'theme-blue-swirl',
     'theme-grid',
     'theme-blue-sky',
-    'theme-black']
+    'theme-black',
+    'theme-nnacoe']
 
   DEFAULT_THEME = THEMES[0]
 
@@ -74,4 +75,3 @@ class Dashboard < ActiveRecord::Base
   end
 
 end
-

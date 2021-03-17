@@ -21,7 +21,7 @@
         you see fit">
         <ul>
           <%= render partial: "dashboard/widgets/form_empty", :locals=>{:dash=>@dash, :f => f} %>
-          <% if @surveys.present? %>
+          <% if @surveys.present? and @dash.theme != 'theme-nnacoe' %>
             <%= render partial: "dashboard/widgets/recent_surveys", locals: {dash: @dash} %>
           <% end %>
         </ul>
